@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Projetos{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <h2 class="fw-semibold mb-0">Projetos em Andamento</h2>
+    <div class="btn-group" role="group" aria-label="Filtros de projetos">
+        <a href="/projetos" class="btn btn-outline-primary {% if not categoria_ativa %}active{% endif %}">Todos</a>
+        <a href="/projetos?categoria=Obra Pública" class="btn btn-outline-primary {% if categoria_ativa == 'Obra Pública' %}active{% endif %}">Obra Pública</a>
+        <a href="/projetos?categoria=Projeto TIC" class="btn btn-outline-primary {% if categoria_ativa == 'Projeto TIC' %}active{% endif %}">Projeto TIC</a>
+    </div>
+</div>
+
+<div class="row" id="lista-projetos">
+    {% for projeto in projetos %}
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm mb-4 projeto" data-categoria="{{ projeto['Tipo'] }}"> {# **ALTERADO AQUI** #}
+            <div class="card-body">
+                <h5 class="card-title fw-bold">{{ projeto['Nome do Projeto'] }}</h5>
+                <p class="card-text text-muted">{{ projeto['Descrição'][:100] }}...</p>
+                <a href="/relatorio/{{ projeto['ID'] }}" class="btn btn-sm btn-primary">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

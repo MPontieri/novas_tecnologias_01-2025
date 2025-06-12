@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Relatório - {{ projeto['Nome do Projeto'] }}{% endblock %}
+
+{% block content %}
+<h2 class="mb-2">{{ projeto['Nome do Projeto'] }}</h2>
+<p class="text-muted mb-4">Responsável: {{ projeto['Responsável'] }} | Órgão Executor: {{ projeto['Órgão Executor'] }}</p>
+
+<hr>
+
+<h5 class="mt-4">Descrição</h5>
+<p>{{ projeto['Descrição'] }}</p>
+
+<h5 class="mt-4">Detalhes do Projeto</h5>
+<ul class="list-group mb-4">
+    <li class="list-group-item"><strong>Prazo:</strong> {{ projeto['Prazo (meses)'] }} meses</li>
+    <li class="list-group-item"><strong>Data de Início:</strong> {{ projeto['Data de Início'] }}</li>
+    <li class="list-group-item"><strong>Data de Término Prevista:</strong> {{ projeto['Data de Término Prevista'] }}</li>
+    <li class="list-group-item"><strong>Status:</strong> {{ projeto['Status'] }}</li>
+    <li class="list-group-item"><strong>Criticidade:</strong> {{ projeto['Criticidade'] }}</li>
+    <li class="list-group-item"><strong>Percentual de Conclusão:</strong> {{ projeto['Percentual de Conclusão (%)'] }}%</li>
+    <li class="list-group-item"><strong>Última Atualização:</strong> {{ projeto['Última Atualização'] }}</li>
+    <li class="list-group-item"><strong>Riscos Identificados:</strong> {{ projeto['Riscos Identificados'] }}</li>
+    <li class="list-group-item"><strong>Tecnologias Utilizadas:</strong> {{ projeto['Tecnologias Utilizadas'] }}</li>
+</ul>
+
+<h4 class="mb-3">Indicadores do Projeto</h4>
+<div class="row">
+    {# Gráfico de Verba #}
+    <div class="col-md-6 mb-4 d-flex justify-content-center align-items-center">
+        <div class="border rounded shadow-sm p-2 bg-white" style="width: 100%; max-width: 500px; height: 300px; display: flex; align-items: center; justify-content: center;">
+            <img src="{{ grafico_verba_path }}" class="img-fluid" style="max-height: 100%; max-width: 100%; object-fit: contain;" alt="Gráfico de Distribuição de Verba">
+        </div>
+    </div>
+    
+    {# Gráfico de Progresso #}
+    <div class="col-md-6 mb-4 d-flex justify-content-center align-items-center">
+        <div class="border rounded shadow-sm p-2 bg-white" style="width: 100%; max-width: 500px; height: 300px; display: flex; align-items: center; justify-content: center;">
+            <img src="{{ grafico_progresso_path }}" class="img-fluid" style="max-height: 100%; max-width: 100%; object-fit: contain;" alt="Gráfico de Progresso do Projeto">
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-4">
+    <a href="/projetos" class="btn btn-secondary">Voltar para Projetos</a>
+</div>
+{% endblock %}
